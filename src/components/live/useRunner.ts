@@ -44,6 +44,7 @@ export interface RunState {
   toolPulse: Record<string, number>;
   nodeTool: Partial<Record<AgentId, string>>;
   interrupt?: InterruptPayload;
+  snapshot?: string;
   outbound?: Ev<"outbound">;
   final?: { outcome: string; evals: EvalResult[]; totals: Ev<"final">["totals"] };
   error?: string;
@@ -83,7 +84,7 @@ function reduce(s: RunState, e: RunEvent): RunState {
     case "audit":
       return { ...s, audit: [...s.audit, e.entry] };
     case "interrupt":
-      return { ...s, status: "waiting", interrupt: e.payload, waits: [...s.waits, { start: e.ts }] };
+      return { ...s, status: "waiting", interrupt: e.payload, snapshot: e.snapshot, waits: [...s.waits, { start: e.ts }] };
     case "outbound":
       return { ...s, outbound: e };
     case "final":
@@ -138,9 +139,9 @@ export function useRunner() {
     (approved: boolean, note?: string) => {
       if (busy.current || !state.threadId) return;
       setState((s) => ({ ...s, status: "running", interrupt: undefined }));
-      void consume({ action: "resume", threadId: state.threadId, approved, note });
+      void consume({ action: "resume", threadId: state.threadId, approved, note, snapshot: state.snapshot });
     },
-    [consume, state.threadId],
+    [consume, state.threadId, state.snapshot],
   );
 
   const reset = useCallback(() => {

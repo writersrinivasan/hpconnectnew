@@ -36,7 +36,7 @@ export type RunEvent =
   | { type: "mcp"; node: AgentId; server: string; tool: string; request: unknown; response: unknown; latencyMs: number; ts: number }
   | { type: "guardrail"; node: AgentId; check: string; status: GuardStatus; detail: string; ts: number }
   | { type: "audit"; entry: AuditEntry }
-  | { type: "interrupt"; threadId: string; payload: InterruptPayload; ts: number }
+  | { type: "interrupt"; threadId: string; payload: InterruptPayload; ts: number; snapshot: string }
   | { type: "outbound"; language: string; text: string; ts: number }
   | { type: "final"; ts: number; outcome: "completed" | "blocked" | "escalated"; evals: EvalResult[]; totals: { durationMs: number; tokens: number; costUsd: number; toolCalls: number; agents: number } }
   | { type: "error"; message: string };

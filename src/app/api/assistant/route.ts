@@ -3,6 +3,7 @@ import type { ChatMsg } from "@/lib/assistant/groq";
 import type { AsstEvent } from "@/lib/assistant/steps";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 // Simple in-memory rate limit (per IP): protects the Groq budget ("denial of wallet").
 const hits = new Map<string, number[]>();

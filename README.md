@@ -27,6 +27,14 @@ npm run dev                  # http://localhost:3000
 - The `/live` demo works **without any API key** (deterministic, offline-safe agents). Set `ANTHROPIC_API_KEY` to let Claude write the triage reasoning.
 - CareBot needs `GROQ_API_KEY`. It uses `openai/gpt-oss-120b` (answers), `openai/gpt-oss-20b` (router) and `meta-llama/llama-prompt-guard-2-86m` (prompt-injection guard).
 
+## Deploy to Vercel
+
+1. Import the GitHub repo at [vercel.com/new](https://vercel.com/new). The framework is auto-detected as Next.js, so keep the defaults.
+2. Add the environment variable `GROQ_API_KEY`. Optionally add `SNAPSHOT_SECRET` (any long random string) and `ANTHROPIC_API_KEY`.
+3. Click **Deploy**. Every later push to `main` redeploys automatically.
+
+The doctor-approval pause works on serverless: the paused graph state is returned to the browser as an HMAC-signed snapshot and restored if the resume request lands on a fresh instance.
+
 ## Code map
 
 - `src/lib/graph.ts`: the clinic's LangGraph multi-agent workflow, plus evals

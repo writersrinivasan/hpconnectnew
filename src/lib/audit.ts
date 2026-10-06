@@ -30,3 +30,7 @@ export function verifyChain(entries: AuditEntry[]): boolean {
 export function getChain(threadId: string): AuditEntry[] {
   return chains.get(threadId) ?? [];
 }
+
+export function seedChain(threadId: string, entries: AuditEntry[]) {
+  chains.set(threadId, [...entries]);
+}
