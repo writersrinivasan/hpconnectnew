@@ -42,6 +42,9 @@ export default function Nav() {
             );
           })}
         </nav>
+        <Link href="/slides" className="hidden rounded-full px-4 py-2 text-sm font-extrabold text-black lg:block" style={{ background: "#FCC204" }}>
+          🎤 Present
+        </Link>
         <button className="ml-auto rounded-lg p-2 lg:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
           {open ? <X /> : <Menu />}
         </button>

@@ -14,6 +14,7 @@ Built with **Next.js 16**, **LangGraph.js**, **Groq** and optionally **Claude**.
 | `/architecture` | Layered architecture, request lifecycle, deployment options, documentation pack |
 | `/trust` | Guardrail playground, AI security threats, governance and risk tiers, evals, observability, tamper-evident audit demo |
 | `/takeaways` | 7 lessons, readiness self-check, ROI calculator, 90-day plan |
+| `/slides` | **Presenter deck** (24 slides, OneYoto branded). `S` opens the matching live app page side-by-side, `N` speaker notes, `G` overview, `F` fullscreen, `←/→` navigate |
 | `/assistant` | **CareBot**: Groq-powered assistant (healthcare module only) that animates its 5-step agent workflow for every question |
 
 ## Run it
